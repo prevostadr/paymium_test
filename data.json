@@ -1,0 +1,46 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "btc_amount": 0.3375,
+      "price": 0.2,
+      "side": "sell",
+      "state": "pending"
+    },
+    {
+      "id": 2,
+      "btc_amount": 0.3375,
+      "price": 0.2,
+      "side": "sell",
+      "state": "cancelled"
+    },
+    {
+      "id": 3,
+      "btc_amount": 1.1,
+      "price": 2.12,
+      "side": "buy",
+      "state": "submitted"
+    },
+    {
+      "id": 3,
+      "btc_amount": 1.1,
+      "price": 2.12,
+      "side": "buy",
+      "state": "submitted"
+    },
+    {
+      "id": 4,
+      "btc_amount": 1.1,
+      "price": 2.12,
+      "side": "buy",
+      "state": "submitted"
+    },
+    {
+      "id": 5,
+      "btc_amount": 1.1,
+      "price": 2.125555555,
+      "side": "buy",
+      "state": "cancelled"
+    }
+  ]
+}
