@@ -1,0 +1,145 @@
+  [1m[35m (264.7ms)[0m  [1m[35mCREATE DATABASE "backend_master_development" ENCODING = 'unicode'[0m
+  [1m[35m (82.0ms)[0m  [1m[35mCREATE DATABASE "backend_master_test" ENCODING = 'unicode'[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6821578943910099915)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateOrders (20241029142941)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "btc_amount" decimal, "price" decimal, "side" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20241029142941"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-10-29 14:30:29.991948"], ["updated_at", "2024-10-29 14:30:29.991948"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6821578943910099915)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mOrder Load (1.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (2.6ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", "buy"], ["created_at", "2024-10-29 14:32:08.938107"], ["updated_at", "2024-10-29 14:32:08.938107"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (58.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_master_development"[0m
+  [1m[35m (101.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_master_test"[0m
+  [1m[35m (171.4ms)[0m  [1m[35mCREATE DATABASE "backend_master_development" ENCODING = 'unicode'[0m
+  [1m[35m (97.3ms)[0m  [1m[35mCREATE DATABASE "backend_master_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6821578943910099915)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-10-29 14:33:36.572690"], ["updated_at", "2024-10-29 14:33:36.572690"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6821578943910099915)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE DATABASE "backend_master_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "backend_master_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6821578943910099915)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateOrders (20241029143425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "btc_amount" decimal, "price" decimal, "side" character varying, "state" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20241029143425"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6821578943910099915)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.3ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", "buy"], ["created_at", "2024-10-29 14:34:54.007873"], ["updated_at", "2024-10-29 14:34:54.007873"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.5ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", "0"], ["created_at", "2024-10-29 14:40:09.733002"], ["updated_at", "2024-10-29 14:40:09.733002"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.1ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", "0"], ["created_at", "2024-10-29 14:40:25.936443"], ["updated_at", "2024-10-29 14:40:25.936443"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."side" = $1 /* loading for pp */ LIMIT $2[0m  [["side", "0"], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."side" = $1[0m  [["side", "0"]]
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."side" = $1 /* loading for pp */ LIMIT $2[0m  [["side", "0"], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (5.2ms)[0m  [1m[33mUPDATE "orders" SET "side" = $1, "updated_at" = $2 WHERE "orders"."id" = $3[0m  [["side", "0"], ["updated_at", "2024-10-29 14:42:55.932447"], ["id", 3]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.5ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", "0"], ["created_at", "2024-10-29 14:44:47.782892"], ["updated_at", "2024-10-29 14:44:47.782892"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (73.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_master_development"[0m
+  [1m[35m (53.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "backend_master_test"[0m
+  [1m[35m (191.8ms)[0m  [1m[35mCREATE DATABASE "backend_master_development" ENCODING = 'unicode'[0m
+  [1m[35m (119.7ms)[0m  [1m[35mCREATE DATABASE "backend_master_test" ENCODING = 'unicode'[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6821578943910099915)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-10-29 14:46:39.252722', '2024-10-29 14:46:39.252726') RETURNING "key"[0m
+Migrating to CreateOrders (20241029143425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "orders" ("id" bigserial primary key, "btc_amount" decimal, "price" decimal, "side" integer, "state" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241029143425') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6821578943910099915)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (2.0ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 0], ["created_at", "2024-10-29 14:46:50.416478"], ["updated_at", "2024-10-29 14:46:50.416478"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.7ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 0], ["created_at", "2024-10-29 14:47:09.477611"], ["updated_at", "2024-10-29 14:47:09.477611"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (0.7ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 1], ["created_at", "2024-10-29 14:47:14.229526"], ["updated_at", "2024-10-29 14:47:14.229526"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.7ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "state", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 1], ["state", 0], ["created_at", "2024-10-29 14:48:47.865810"], ["updated_at", "2024-10-29 14:48:47.865810"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (1.1ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "state", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 1], ["state", 0], ["created_at", "2024-10-29 14:49:31.986080"], ["updated_at", "2024-10-29 14:49:31.986080"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (2.0ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "state", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["btc_amount", "3.375"], ["price", "2.0"], ["side", 1], ["state", 0], ["created_at", "2024-10-29 14:49:59.066239"], ["updated_at", "2024-10-29 14:49:59.066239"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."side" = $1 /* loading for pp */ LIMIT $2[0m  [["side", 1], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 /* loading for pp */ LIMIT $2[0m  [["state", 1], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 /* loading for pp */ LIMIT $2[0m  [["state", 0], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 AND "orders"."side" = $2 /* loading for pp */ LIMIT $3[0m  [["state", 0], ["side", 0], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 AND "orders"."side" = $2 /* loading for pp */ LIMIT $3[0m  [["state", 0], ["side", 1], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 AND "orders"."side" = $2[0m  [["state", 1], ["side", 0]]
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 AND "orders"."side" = $2[0m  [["state", 1], ["side", 1]]
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 /* loading for pp */ LIMIT $2[0m  [["state", 1], ["LIMIT", 11]]
+  [1m[36mOrder Count (6.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders"[0m
+  [1m[36mOrder Load (0.3ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" /* loading for pp */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mOrder Update All (2.4ms)[0m  [1m[33mUPDATE "orders" SET "state" = $1[0m  [["state", 1]]
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 /* loading for pp */ LIMIT $2[0m  [["state", 1], ["LIMIT", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Create (3.7ms)[0m  [1m[32mINSERT INTO "orders" ("btc_amount", "price", "side", "state", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["btc_amount", "1.1"], ["price", "2.125555555"], ["side", 0], ["state", 1], ["created_at", "2024-11-04 13:05:16.805139"], ["updated_at", "2024-11-04 13:05:16.805139"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (1.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (2.4ms)[0m  [1m[33mUPDATE "orders" SET "state" = $1, "updated_at" = $2 WHERE "orders"."id" = $3[0m  [["state", 1], ["updated_at", "2024-11-04 13:09:35.459100"], ["id", 9]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 /* loading for pp */ LIMIT $2[0m  [["state", 1], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."state" = $1 AND "orders"."side" = $2 /* loading for pp */ LIMIT $3[0m  [["state", 1], ["side", 0], ["LIMIT", 11]]
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mOrder Load (0.2ms)[0m  [1m[34mSELECT "orders".* FROM "orders" ORDER BY "orders"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
