@@ -18,19 +18,25 @@ module UserService
     end
 
     def buyer_change(buyer)
-      buyer.eur_balance -= BigDecimal(@order_buyer.price)
+      buyer.eur_balance -= BigDecimal(@order_buyer.price + fee_in_euro(@order_seller))
       buyer.btc_balance += BigDecimal(@order_buyer.btc_amount)
 
       buyer.save!
     end
 
     def seller_change(seller)
-      seller.eur_balance += BigDecimal(@order_seller.price)
+      seller.eur_balance += BigDecimal(@order_seller.price - fee_in_euro(@order_seller))
       seller.btc_balance -= BigDecimal(@order_seller.btc_amount)
 
       seller.save!
     end
 
+    def fee_in_euro(order)
+      fee = order.fee.to_f
+      (order.btc_amount * order.price) * fee / 100
+    end
+
+    private
     def enough_btc(user, btc_amount)
       raise 'Not enough btc' if (user.btc_balance - btc_amount).negative?
     end
