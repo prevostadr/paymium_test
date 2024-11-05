@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require_relative 'order_service/submit.rb'
 require_relative 'order_service/cancel.rb'
+require_relative 'order_service/match.rb'
 
 class MarketServiceObject
 
@@ -31,5 +32,9 @@ class MarketServiceObject
 
   def cancel_order(order_id)
     OrderService::Cancel.new(order_id: order_id).call
+  end
+
+  def match
+    OrderService::Match.new.call
   end
 end

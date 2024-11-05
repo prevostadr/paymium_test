@@ -10,7 +10,7 @@ module OrderService
     end
 
     def call
-      order = Order.create!(btc_amount: @btc_amount, price: @price, side: @side)
+      order = Order.create!(btc_amount: @btc_amount, price: @price, side: @side, user_id: @user_id)
       order.id if order.submitted!
     end
   end
