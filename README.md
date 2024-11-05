@@ -1,3 +1,44 @@
+# Getting Started
+
+* Ruby version
+
+```
+ruby 3.1.4
+```
+
+* Rails version
+
+```
+Rails 7.2.1.2
+```
+
+## Installation
+
+### Dependencies installation
+At first, you should install the required dependencies
+
+```
+bundle install
+```
+
+### Database creation and seed
+
+Create the database, apply the migrations and run seed
+
+```
+bin/rails db:setup
+```
+
+## Rspec
+
+### Running the tests
+
+```
+rspec
+```
+
+_____________________________________________________
+
 # Backend challenge
 
 ## Guidelines

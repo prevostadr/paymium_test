@@ -5,40 +5,48 @@ module UserService
     def initialize(order_buyer, order_seller)
       @order_buyer = order_buyer
       @order_seller = order_seller
+      @market_base = order_buyer.market.base
     end
 
     def call
       seller = @order_seller.user
       buyer = @order_buyer.user
       users_not_found(buyer, seller)
-      enough_btc(seller, @order_seller.btc_amount)
       enough_eur(buyer, @order_buyer.price)
+      send("enough_#{@market_base}", seller, @order_seller.amount)
+
       buyer_change(buyer)
       seller_change(seller)
     end
 
     def buyer_change(buyer)
       buyer.eur_balance -= BigDecimal(@order_buyer.price + fee_in_euro(@order_seller))
-      buyer.btc_balance += BigDecimal(@order_buyer.btc_amount)
+      base_balance = buyer.send("#{@market_base}_balance") + BigDecimal(@order_buyer.amount)
 
+      buyer.send("#{@market_base}_balance" + '=', base_balance)
       buyer.save!
     end
 
     def seller_change(seller)
       seller.eur_balance += BigDecimal(@order_seller.price - fee_in_euro(@order_seller))
-      seller.btc_balance -= BigDecimal(@order_seller.btc_amount)
+      base_balance = seller.send("#{@market_base}_balance") - BigDecimal(@order_seller.amount)
 
+      seller.send("#{@market_base}_balance" + '=', base_balance)
       seller.save!
     end
 
     def fee_in_euro(order)
       fee = order.fee.to_f
-      (order.btc_amount * order.price) * fee / 100
+      (order.amount * order.price) * fee / 100
     end
 
     private
-    def enough_btc(user, btc_amount)
-      raise 'Not enough btc' if (user.btc_balance - btc_amount).negative?
+    def enough_eth(user, eth_amount)
+      raise 'Not enough eth' if (user.eth_balance - eth_amount).negative?
+    end
+
+    def enough_btc(user, amount)
+      raise 'Not enough btc' if (user.btc_balance - amount).negative?
     end
 
     def enough_eur(user, price)

@@ -21,12 +21,16 @@ class MarketServiceObject
   end
 
   def market_depth
-    orders_submitted = Order.submitted
-    json = { "base"=>"BTC",
-             "quote"=>"EUR"}
+    json = []
+    Market.find_each.each do |market|
+      orders_submitted = market.orders.submitted
 
-    json['bids'] = orders_submitted.buy.map { [_1.price, _1.btc_amount] }
-    json['asks'] = orders_submitted.sell.map { [_1.price, _1.btc_amount] }
+      market_json = { "base"=> market.base.upcase,
+                      "quote"=> market.quote.upcase}
+      market_json['bids'] = orders_submitted.buy.map { [_1.price, _1.amount] }
+      market_json['asks'] = orders_submitted.sell.map { [_1.price, _1.amount] }
+      json << market_json
+    end
     json
   end
 

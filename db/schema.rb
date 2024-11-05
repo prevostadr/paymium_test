@@ -10,19 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_05_100120) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_05_130335) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "markets", force: :cascade do |t|
+    t.integer "base"
+    t.integer "quote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
-    t.decimal "btc_amount"
+    t.decimal "amount"
     t.decimal "price"
     t.integer "side"
     t.integer "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.decimal "fee"
+    t.decimal "fee", default: "0.0"
+    t.bigint "market_id"
+    t.index ["market_id"], name: "index_orders_on_market_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -31,7 +40,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_100120) do
     t.decimal "eur_balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "eth_balance"
   end
 
+  add_foreign_key "orders", "markets"
   add_foreign_key "orders", "users"
 end
